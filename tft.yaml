@@ -122,6 +122,11 @@ text_sensor:
     entity_id: switch.zw1_c_switch
     id: coffee_power
     internal: true
+
+  - platform: homeassistant
+    entity_id: media_player.kueche
+    id: radio_status
+    internal: true    
     
 sensor:
   - platform: homeassistant
@@ -323,7 +328,11 @@ display:
         it.image(hq - 25, 40, id(coffee));
         it.printf(10, (vs * 6) + 4, id(helvetica_24), id(my_gray), TextAlign::BOTTOM_LEFT, "Solar: %.f W / %.2f kWh", id(solar_actual).state, id(solar_total).state);
       }
-      it.image(3*hq - 25, 40, id(radio));
+      if (id(radio_status).state == "playing") {
+        it.image(3*hq - 25, 40, id(radio_filled));
+      } else {
+        it.image(3*hq - 25, 40, id(radio));
+      }  
 
       it.line(0, vs * 4, it.get_width(), vs * 4, id(my_blue));
       it.print(hs, vs * 4 + line_gap, id(helvetica_24), id(my_white), TextAlign::CENTER, "Lelit MaraX");
