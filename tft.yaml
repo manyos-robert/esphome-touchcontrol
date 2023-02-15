@@ -68,13 +68,13 @@ font:
     size: 12
 
 image:
-  - file: "coffee.png"
+  - file: "icons/coffee.png"
     id: coffee
-  - file: "coffee_filled.png"
+  - file: "icons/coffee_filled.png"
     id: coffee_filled
-  - file: "radio.png"
+  - file: "icons/radio.png"
     id: radio
-  - file: "radio_filled.png"
+  - file: "icons/radio_filled.png"
     id: radio_filled
   
 
@@ -127,6 +127,11 @@ sensor:
   - platform: homeassistant
     entity_id: sensor.steam_actual
     id: steam_actual
+    internal: true
+
+  - platform: homeassistant
+    entity_id: sensor.einspeisung_terasse_electricalmeasurement
+    id: solar_actual
     internal: true
 
   - platform: homeassistant
@@ -311,6 +316,7 @@ display:
         } 
       } else {
         it.image(hq - 25, 40, id(coffee));
+        it.printf(10, (vs * 6) + 4, id(helvetica_24), id(my_gray), TextAlign::BOTTOM_LEFT, "Solar Terasse: %.f W", id(solar_actual).state);
       }
       it.image(3*hq - 25, 40, id(radio));
 
