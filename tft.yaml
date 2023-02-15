@@ -131,6 +131,11 @@ sensor:
 
   - platform: homeassistant
     entity_id: sensor.einspeisung_terasse_electricalmeasurement
+    id: solar_total
+    internal: true
+    
+  - platform: homeassistant
+    entity_id: sensor.einspeisung_terasse
     id: solar_actual
     internal: true
 
@@ -316,7 +321,7 @@ display:
         } 
       } else {
         it.image(hq - 25, 40, id(coffee));
-        it.printf(10, (vs * 6) + 4, id(helvetica_24), id(my_gray), TextAlign::BOTTOM_LEFT, "Solar Terasse: %.f W", id(solar_actual).state);
+        it.printf(10, (vs * 6) + 4, id(helvetica_24), id(my_gray), TextAlign::BOTTOM_LEFT, "Solar Terasse: %.f W / %.2f kWh", id(solar_actual).state, id(solar_total).state);
       }
       it.image(3*hq - 25, 40, id(radio));
 
